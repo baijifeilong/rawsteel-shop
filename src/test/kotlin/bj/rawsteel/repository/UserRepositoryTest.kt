@@ -1,6 +1,7 @@
 package bj.rawsteel.repository
 
 import bj.rawsteel.AppTest
+import bj.rawsteel.domain.QUser
 import bj.rawsteel.domain.User
 import org.junit.Test
 import org.springframework.data.domain.Example
@@ -22,7 +23,10 @@ class UserRepositoryTest : AppTest() {
         logger.info("Testing findAll(Example.of(User(1)))")
         userRepository.findAll(Example.of(User(1))).forEach(::println)
 
-        logger.info("my")
+        logger.info("Testing HQL")
         println(userRepository.myFindById(1))
+
+        logger.info("Test QueryDSL")
+        userRepository.findAll(QUser.user.isNotNull.and(QUser.user.id.gt(1))).forEach(::println)
     }
 }

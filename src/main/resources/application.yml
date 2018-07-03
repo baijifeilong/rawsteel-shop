@@ -6,3 +6,8 @@ spring:
     url: jdbc:sqlite:app.db
   jpa:
     database-platform: org.hibernate.dialect.SQLiteDialect
+logging:
+  level:
+    root: debug
+    org.springframework.jdbc.datasource.DataSourceUtils: info
+
