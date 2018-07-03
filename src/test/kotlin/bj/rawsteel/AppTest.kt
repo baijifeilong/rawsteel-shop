@@ -2,6 +2,8 @@ package bj.rawsteel
 
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
 
@@ -13,8 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner
 @SpringBootTest(classes = [App::class])
 open class AppTest {
 
+    protected val logger: Logger = LoggerFactory.getLogger(this.javaClass)
+
     @Test
-    fun main() {
+    fun nothing() {
+        logger.info("nothing")
         assert("true".toBoolean())
     }
 }

@@ -13,7 +13,8 @@ class UserRepositoryTest : AppTest() {
     private lateinit var userRepository: UserRepository
 
     @Test
-    fun nothing() {
+    fun testFindAll() {
+        logger.info("Testing findAll()")
         userRepository.findAll().forEach(::println)
     }
 }
