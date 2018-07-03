@@ -1,7 +1,9 @@
 package bj.rawsteel.repository
 
 import bj.rawsteel.AppTest
+import bj.rawsteel.domain.User
 import org.junit.Test
+import org.springframework.data.domain.Example
 import javax.annotation.Resource
 
 /**
@@ -16,5 +18,8 @@ class UserRepositoryTest : AppTest() {
     fun testFindAll() {
         logger.info("Testing findAll()")
         userRepository.findAll().forEach(::println)
+
+        logger.info("Testing findAll(Example.of(User(1)))")
+        userRepository.findAll(Example.of(User(1))).forEach(::println)
     }
 }
