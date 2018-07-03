@@ -21,5 +21,8 @@ class UserRepositoryTest : AppTest() {
 
         logger.info("Testing findAll(Example.of(User(1)))")
         userRepository.findAll(Example.of(User(1))).forEach(::println)
+
+        logger.info("my")
+        println(userRepository.myFindById(1))
     }
 }
