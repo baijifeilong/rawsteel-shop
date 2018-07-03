@@ -2,3 +2,7 @@ spring:
   output:
     ansi:
       enabled: always
+  datasource:
+    url: jdbc:sqlite:app.db
+  jpa:
+    database-platform: org.hibernate.dialect.SQLiteDialect
