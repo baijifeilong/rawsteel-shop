@@ -1,4 +1,4 @@
-package bj
+package bj.rawsteel
 
 import org.junit.Test
 
