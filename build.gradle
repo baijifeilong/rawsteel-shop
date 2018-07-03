@@ -36,3 +36,10 @@ repositories {
 flyway {
     url = "jdbc:sqlite:app.db"
 }
+
+//noinspection GroovyAssignabilityCheck
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
