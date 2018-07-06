@@ -36,4 +36,9 @@ open class App : ApplicationListener<ApplicationReadyEvent> {
     fun index(): Any {
         return "Hello world!";
     }
+
+    @RequestMapping("/exception")
+    fun ex() {
+        throw RuntimeException("I am an exception")
+    }
 }
