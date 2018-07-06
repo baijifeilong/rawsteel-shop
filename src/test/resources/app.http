@@ -1,0 +1,22 @@
+### Home
+GET http://localhost:8080/
+Accept: application/json
+
+### Get users
+GET http://localhost:8080/api/admin/users
+Accept: application/json
+
+### Get users with illegal arguments
+GET http://localhost:8080/api/admin/users?page=one
+Accept: application/json
+
+### 404
+GET http://localhost:8080/notFound
+Accept: application/json
+
+### Exception
+GET http://localhost:8080/exception
+Accept: application/json
+
+###
+
