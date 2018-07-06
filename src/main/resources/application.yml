@@ -6,8 +6,13 @@ spring:
     url: jdbc:sqlite:app.db
   jpa:
     database-platform: org.hibernate.dialect.SQLiteDialect
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
 logging:
   level:
-    root: debug
+    root: info
     org.springframework.jdbc.datasource.DataSourceUtils: info
+
 
