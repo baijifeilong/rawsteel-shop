@@ -6,13 +6,17 @@ import bj.rawsteel.exception.RegisterException
 import bj.rawsteel.repository.UserRepository
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import io.jsonwebtoken.impl.crypto.MacProvider
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import java.nio.ByteBuffer
+import java.security.Key
+import java.security.MessageDigest
 import java.util.*
 import javax.annotation.Resource
+import javax.crypto.spec.SecretKeySpec
 import javax.security.auth.login.LoginException
 
 /**
@@ -24,7 +28,15 @@ class UserService : BaseService() {
     @Resource
     private lateinit var userRepository: UserRepository
 
-    private val key = MacProvider.generateKey()
+    @Value("app.key")
+    private lateinit var keyString: String;
+
+    private val key: Key by lazy {
+        val md5 = MessageDigest.getInstance("MD5")
+        val keyArr = ByteBuffer.wrap(ByteArray(32)).put(md5.digest(keyString.toByteArray()))
+                .put(md5.digest(md5.digest(keyString.toByteArray()))).array()
+        return@lazy SecretKeySpec(keyArr, "HmacSHA512")
+    }
 
     fun findAll(username: String?, pageable: Pageable = PageRequest.of(0, 100)): Page<User> {
         var predicate = QUser.user.isNotNull

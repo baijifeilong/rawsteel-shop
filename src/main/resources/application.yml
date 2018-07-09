@@ -16,3 +16,5 @@ logging:
     org.springframework.jdbc.datasource.DataSourceUtils: info
 
 
+app:
+  key: rawsteel
