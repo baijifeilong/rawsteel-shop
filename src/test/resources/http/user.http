@@ -1,0 +1,23 @@
+### Register
+POST http://localhost:8080/api/users/register
+Content-Type: application/x-www-form-urlencoded
+
+username=banana&password=banana
+
+### Login
+POST http://localhost:8080/api/users/login
+Content-Type: application/x-www-form-urlencoded
+
+username=apple&password=apple
+
+### Current user
+GET http://localhost:8080/api/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW5hbmEifQ.XD13I--Ill43eOIq06rQvB2iD-SPJU8QNTlEW8rIGvg
+
+### Current user without login
+GET http://localhost:8080/api/users/current
+Accept: application/json
+
+###
+

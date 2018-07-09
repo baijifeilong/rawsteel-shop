@@ -9,6 +9,7 @@ import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.Authentication
@@ -37,8 +38,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 open class SecurityConfig : WebSecurityConfigurerAdapter() {
     companion object {
         val PUBLIC_URLS = arrayOf(
-                "/v2/api-docs",
-                "/swagger-ui.html",
+                "/",
                 "/api/users/login",
                 "/api/users/register"
         )
@@ -48,6 +48,10 @@ open class SecurityConfig : WebSecurityConfigurerAdapter() {
     private lateinit var tokenAuthenticationProvider: TokenAuthenticationProvider
 
     private val objectMapper = ObjectMapper().writerWithDefaultPrettyPrinter()
+
+    override fun configure(web: WebSecurity?) {
+        web?.ignoring()?.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security", "/swagger-ui.html", "/webjars/**");
+    }
 
     override fun configure(http: HttpSecurity?) {
         val protectedUrls = NegatedRequestMatcher(OrRequestMatcher(PUBLIC_URLS.map { AntPathRequestMatcher(it) }))
