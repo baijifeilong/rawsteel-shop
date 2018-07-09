@@ -22,10 +22,12 @@ mainClassName = 'bj.rawsteel.App'
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect"
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile "org.xerial:sqlite-jdbc"
     compile 'com.github.gwenn:sqlite-dialect:master'
     compile 'com.querydsl:querydsl-jpa'
+    compile 'io.jsonwebtoken:jjwt:0.9.1'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     kapt "com.querydsl:querydsl-apt:4.1.4:jpa"
 }

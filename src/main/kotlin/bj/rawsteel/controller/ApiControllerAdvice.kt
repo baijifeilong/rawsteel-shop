@@ -1,6 +1,7 @@
 package bj.rawsteel.controller
 
 import bj.rawsteel.domain.ApiFailure
+import bj.rawsteel.exception.BizException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -15,10 +16,14 @@ class ApiControllerAdvice {
 
     @ExceptionHandler(Exception::class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    fun processException(exception: Exception) = ApiFailure.of(500, exception.localizedMessage)
+    fun processException(e: Exception) = ApiFailure.of(500, e.localizedMessage)
 
 
     @ExceptionHandler(NoHandlerFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    fun processNotFoundException(exception: Exception) = ApiFailure.of(404, exception.localizedMessage)
+    fun processNotFoundException(e: Exception) = ApiFailure.of(404, e.localizedMessage)
+
+    @ExceptionHandler(BizException::class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    fun processBizException(e: BizException) = ApiFailure.of(e.code, e.localizedMessage)
 }
