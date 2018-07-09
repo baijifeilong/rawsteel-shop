@@ -36,7 +36,12 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 @SpringBootConfiguration
 open class SecurityConfig : WebSecurityConfigurerAdapter() {
     companion object {
-        val PUBLIC_URLS = arrayOf("/api/users/login", "/api/users/register")
+        val PUBLIC_URLS = arrayOf(
+                "/v2/api-docs",
+                "/swagger-ui.html",
+                "/api/users/login",
+                "/api/users/register"
+        )
     }
 
     @Resource

@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationListener
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import springfox.documentation.swagger2.annotations.EnableSwagger2
 import javax.annotation.Resource
 
 /**
@@ -14,6 +15,7 @@ import javax.annotation.Resource
  */
 @SpringBootApplication
 @RestController
+@EnableSwagger2
 open class App : ApplicationListener<ApplicationReadyEvent> {
 
     @Resource
@@ -35,10 +37,5 @@ open class App : ApplicationListener<ApplicationReadyEvent> {
     @RequestMapping("/")
     fun index(): Any {
         return "Hello world!";
-    }
-
-    @RequestMapping("/exception")
-    fun ex() {
-        throw RuntimeException("I am an exception")
     }
 }

@@ -28,6 +28,8 @@ dependencies {
     compile 'com.github.gwenn:sqlite-dialect:master'
     compile 'com.querydsl:querydsl-jpa'
     compile 'io.jsonwebtoken:jjwt:0.9.1'
+    compile 'io.springfox:springfox-swagger2:2.9.2'
+    compile 'io.springfox:springfox-swagger-ui:2.9.2'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     kapt "com.querydsl:querydsl-apt:4.1.4:jpa"
 }
