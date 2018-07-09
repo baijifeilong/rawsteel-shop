@@ -1,0 +1,21 @@
+### Index
+GET http://localhost:8080/api/admin/templates
+Accept: application/json
+
+### Create
+POST http://localhost:8080/api/admin/templates
+Content-Type: application/x-www-form-urlencoded
+
+### Get
+GET http://localhost:8080/api/admin/templates/4
+Accept: application/json
+
+### Patch
+PATCH http://localhost:8080/api/admin/templates/4
+Content-Type: application/x-www-form-urlencoded
+
+### Delete
+DELETE http://localhost:8080/api/admin/templates/1
+Content-Type: application/x-www-form-urlencoded
+
+

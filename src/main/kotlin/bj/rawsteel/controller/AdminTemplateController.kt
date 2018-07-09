@@ -47,6 +47,7 @@ class AdminTemplateController {
     @PatchMapping("{id}")
     fun update(@PathVariable id: Long): ApiSuccess<Template> {
         val template = templateService.findByIdOrThrow(id)
+        templateService.update(id)
         return ApiSuccess.of(template)
     }
 

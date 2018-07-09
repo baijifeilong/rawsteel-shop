@@ -32,13 +32,18 @@ class TemplateService {
     }
 
     fun create(): Template {
-        val template = Template()
+        val template = Template().apply {
+            createdAt = Date()
+            updatedAt = createdAt
+        }
         templateRepository.save(template)
         return template
     }
 
     fun update(id: Long): Template {
-        val template = findByIdOrThrow(id)
+        val template = findByIdOrThrow(id).apply {
+            updatedAt = Date()
+        }
         templateRepository.save(template)
         return template
     }
