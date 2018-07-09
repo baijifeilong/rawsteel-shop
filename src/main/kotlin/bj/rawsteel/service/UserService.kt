@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
+import org.springframework.security.crypto.bcrypt.BCrypt
 import org.springframework.stereotype.Service
 import java.nio.ByteBuffer
 import java.security.Key
@@ -61,7 +62,7 @@ class UserService : BaseService() {
     fun create(username: String, password: String): User {
         val user = User().apply {
             this.username = username
-            this.password = password
+            this.password = BCrypt.hashpw(password, BCrypt.gensalt())
         }
         return userRepository.save(user)
     }
@@ -97,9 +98,12 @@ class UserService : BaseService() {
     }
 
     fun login(username: String, password: String): User {
-        return findByUsername(username).orElseThrow { LoginException(getMessage("LOGIN_FAILED_USERNAME_NOT_EXIST", username)) }.apply {
-            token = Jwts.builder().setSubject(username).signWith(SignatureAlgorithm.HS256, key).compact()
+        val user = findByUsername(username).orElseThrow { LoginException(getMessage("LOGIN_FAILED_USERNAME_NOT_EXIST", username)) }
+        if (!BCrypt.checkpw(password, user.password)) {
+            throw LoginException(getMessage("LOGIN_FAILED_PASSWORD_INVALID"))
         }
+        user.token = Jwts.builder().setSubject(username).signWith(SignatureAlgorithm.HS256, key).compact()
+        return user
     }
 
     fun registerAndLogin(username: String, password: String): User {
