@@ -1,21 +1,23 @@
 <template>
-  <form class="md-layout md-alignment-center">
+  <form class="md-layout md-alignment-center" @submit.prevent="doLogin">
     <md-card class="md-layout-item md-size-50 md-small-size-100">
       <md-card-header>
         <div class="md-title">{{$t('login.login')}}</div>
       </md-card-header>
       <md-card-content>
-        <md-field>
+        <md-field :class="errors.has('username')?'md-invalid': ''">
           <label>{{$t('login.username')}}</label>
-          <md-input v-model="form.username"/>
+          <md-input v-model="form.username" v-validate="'required|min:4'" name="username"/>
+          <span class="md-error">{{ errors.first('username') }}</span>
         </md-field>
-        <md-field>
+        <md-field :class="errors.has('password')?'md-invalid': ''">
           <label>{{$t('login.password')}}</label>
-          <md-input v-model="form.password"/>
+          <md-input v-model="form.password" v-validate="'required|min:4'" name="password"/>
+          <span class="md-error">{{ errors.first('password') }}</span>
         </md-field>
       </md-card-content>
       <md-card-actions>
-        <md-button class="md-primary">{{$t('login.login')}}</md-button>
+        <md-button type="submit" class="md-primary">{{$t('login.login')}}</md-button>
       </md-card-actions>
     </md-card>
   </form>
@@ -29,7 +31,12 @@
         username: '',
         password: ''
       }
-    })
+    }),
+    methods: {
+      doLogin() {
+        console.log("doLogin")
+      }
+    }
   }
 </script>
 

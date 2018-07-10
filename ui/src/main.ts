@@ -11,6 +11,10 @@ Vue.config.productionTip = false;
 Vue.use(VueMaterial);
 Vue.use(VueI18n);
 
+import VeeValidate from 'vee-validate';
+
+Vue.use(VeeValidate);
+
 const i18n = new VueI18n({
   locale: 'zh',
   messages: {
