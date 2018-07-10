@@ -1,0 +1,6 @@
+### Home
+GET http://localhost:8080/api/home
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW5hbmEifQ.XD13I--Ill43eOIq06rQvB2iD-SPJU8QNTlEW8rIGvg
+
+###

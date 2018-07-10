@@ -8,7 +8,7 @@ username=banana&password=banana
 POST http://localhost:8080/api/users/login
 Content-Type: application/x-www-form-urlencoded
 
-username=apple&password=apple
+username=banana&password=banana
 
 ### Current user
 GET http://localhost:8080/api/users/current

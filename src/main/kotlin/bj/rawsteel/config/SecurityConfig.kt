@@ -50,7 +50,14 @@ open class SecurityConfig : WebSecurityConfigurerAdapter() {
     private val objectMapper = ObjectMapper().writerWithDefaultPrettyPrinter()
 
     override fun configure(web: WebSecurity?) {
-        web?.ignoring()?.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security", "/swagger-ui.html", "/webjars/**");
+        web?.ignoring()?.antMatchers(
+                "/v2/api-docs",
+                "/configuration/**",
+                "/swagger-resources/**",
+                "/swagger-ui.html",
+                "/webjars/**",
+                "/lorem/**"
+        )
     }
 
     override fun configure(http: HttpSecurity?) {
@@ -59,7 +66,7 @@ open class SecurityConfig : WebSecurityConfigurerAdapter() {
                 ?.and()?.exceptionHandling()?.authenticationEntryPoint { _, response, e ->
                     response.status = 401
                     response.contentType = MediaType.APPLICATION_JSON_UTF8_VALUE
-                    response.writer.write(objectMapper.writeValueAsString(ApiFailure.of(401, "Unauthorized: Invalid token")))
+                    response.writer.write(objectMapper.writeValueAsString(ApiFailure.of(401, "Unauthorized: No token or invalid token")))
                 }
                 ?.and()?.authenticationProvider(tokenAuthenticationProvider)
                 ?.addFilterBefore(TokenAuthenticationFilter(protectedUrls).apply {
