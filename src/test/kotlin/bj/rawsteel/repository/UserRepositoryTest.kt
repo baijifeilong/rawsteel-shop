@@ -21,7 +21,7 @@ class UserRepositoryTest : AppTest() {
         userRepository.findAll().forEach(::println)
 
         logger.info("Testing findAll(Example.of(User(1)))")
-        userRepository.findAll(Example.of(User(1, "hello"))).forEach(::println)
+        userRepository.findAll(Example.of(User().apply { id = 1 })).forEach(::println)
 
         logger.info("Testing HQL")
         println(userRepository.myFindById(1))
