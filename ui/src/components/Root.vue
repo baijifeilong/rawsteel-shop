@@ -37,7 +37,7 @@
         <md-bottom-bar-item md-label="Home" md-icon="home" to="/index"/>
         <md-bottom-bar-item md-label="Foo" md-icon="perm_identity" to="/foo"/>
         <md-bottom-bar-item md-label="Bar" md-icon="ac_unit" to="/bar"/>
-        <md-bottom-bar-item md-label="Baz" md-icon="favorite" to="/baz"/>
+        <md-bottom-bar-item md-label="Me" md-icon="favorite" to="/me"/>
       </md-bottom-bar>
     </div>
   </div>

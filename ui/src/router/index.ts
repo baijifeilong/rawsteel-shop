@@ -3,10 +3,12 @@ import Router from 'vue-router'
 import Home from '@/components/Home.vue'
 import NotFound from '@/components/NotFound.vue'
 import Login from '@/components/Login.vue'
+import Logout from '@/components/Logout.vue'
 import Foo from '@/components/Foo.vue'
 import Bar from '@/components/Bar.vue'
 import Baz from '@/components/Baz.vue'
 import Root from '@/components/Root.vue'
+import Me from '@/components/Me.vue'
 import * as globals from '../common/globals'
 
 Vue.use(Router);
@@ -18,8 +20,11 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login
-    },
-    {
+    }, {
+      path: '/logout',
+      name: 'logout',
+      component: Logout
+    }, {
       path: '/404',
       name: 'notFound',
       component: NotFound
@@ -48,6 +53,10 @@ const router = new Router({
           path: '/baz',
           name: 'baz',
           component: Baz
+        }, {
+          path: '/me',
+          name: 'me',
+          component: Me
         }
       ]
     }

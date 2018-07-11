@@ -35,8 +35,8 @@
     name: "Login",
     data: () => ({
       form: {
-        username: '',
-        password: ''
+        username: 'apple',
+        password: 'apple'
       },
       showSnackbar: false,
       error: 'nothing'

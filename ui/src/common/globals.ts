@@ -11,3 +11,7 @@ export function getUser(): User {
 export function setUser(user: User): void {
   localStorage.setItem('user', JSON.stringify(user))
 }
+
+export function unsetUser(): void {
+  setUser(new User)
+}
