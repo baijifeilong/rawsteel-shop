@@ -33,11 +33,11 @@
       </md-app-content>
     </md-app>
     <div class="phone-viewport">
-      <md-bottom-bar class="md-accent">
-        <md-bottom-bar-item md-label="Home" md-icon="home"></md-bottom-bar-item>
-        <md-bottom-bar-item md-label="Home" md-icon="error"></md-bottom-bar-item>
-        <md-bottom-bar-item md-label="Home" md-icon="favorite"></md-bottom-bar-item>
-        <md-bottom-bar-item md-label="Home" md-icon="favorite"></md-bottom-bar-item>
+      <md-bottom-bar class="md-accent" md-sync-route>
+        <md-bottom-bar-item md-label="Home" md-icon="home" to="/index"/>
+        <md-bottom-bar-item md-label="Foo" md-icon="perm_identity" to="/foo"/>
+        <md-bottom-bar-item md-label="Bar" md-icon="ac_unit" to="/bar"/>
+        <md-bottom-bar-item md-label="Baz" md-icon="favorite" to="/baz"/>
       </md-bottom-bar>
     </div>
   </div>
