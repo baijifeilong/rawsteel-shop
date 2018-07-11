@@ -24,6 +24,9 @@
 </template>
 
 <script lang="ts">
+  import userApi from '../api/userApi'
+  import * as globals from '../common/globals'
+
   export default {
     name: "Login",
     data: () => ({
@@ -34,7 +37,11 @@
     }),
     methods: {
       doLogin() {
-        console.log("doLogin")
+        console.log("doLogin");
+        userApi.login(this.form.username, this.form.password).then(user => {
+          globals.setUser(user);
+          this.$router.push({name: 'home'})
+        })
       }
     }
   }

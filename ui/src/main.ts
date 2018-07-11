@@ -3,32 +3,19 @@ import App from './App.vue'
 import router from './router'
 import VueMaterial from 'vue-material'
 import VueI18n from 'vue-i18n'
-
+import VeeValidate from 'vee-validate';
+import messages from './i18n/messages'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
 Vue.config.productionTip = false;
 Vue.use(VueMaterial);
 Vue.use(VueI18n);
-
-import VeeValidate from 'vee-validate';
-
 Vue.use(VeeValidate);
 
 const i18n = new VueI18n({
   locale: 'zh',
-  messages: {
-    en: {
-      'login.login': 'Login',
-      'login.username': 'Username',
-      'login.password': 'Password',
-    },
-    zh: {
-      'login.login': '登录',
-      'login.username': '用户名',
-      'login.password': '密码',
-    }
-  }
+  messages
 });
 
 new Vue({
