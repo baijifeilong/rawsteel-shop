@@ -7,14 +7,16 @@ import Foo from '@/components/Foo.vue'
 import Bar from '@/components/Bar.vue'
 import Baz from '@/components/Baz.vue'
 import Root from '@/components/Root.vue'
+import * as globals from '../common/globals'
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/login',
+      name: 'login',
       component: Login
     },
     {
@@ -50,4 +52,20 @@ export default new Router({
       ]
     }
   ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+  const online: boolean = globals.getUser().online;
+  const accessLoginUrl = to.name === 'login';
+  const accessProtectedUrl = !accessLoginUrl;
+  if (!online && accessProtectedUrl) {
+    console.log("Offline and access protected url");
+    router.push({name: 'login'})
+  } else if (online && accessLoginUrl) {
+    console.log("Online and access login url");
+    router.push({name: 'home'})
+  }
+  next();
+});
+
+export default router;

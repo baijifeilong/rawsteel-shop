@@ -5,6 +5,7 @@ class User {
   createdAt: Date;
   updatedAt: Date;
   token: string;
+  online: boolean;
 
   static fromApi(item: object) {
     const user: User = new User();

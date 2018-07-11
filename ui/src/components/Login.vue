@@ -20,6 +20,10 @@
         <md-button type="submit" class="md-primary">{{$t('login.login')}}</md-button>
       </md-card-actions>
     </md-card>
+    <md-snackbar :md-active.sync="showSnackbar" md-persistent>
+      <span>Login failed: {{error}}</span>
+      <md-button class="md-primary" @click="showSnackbar=false">OK</md-button>
+    </md-snackbar>
   </form>
 </template>
 
@@ -33,14 +37,20 @@
       form: {
         username: '',
         password: ''
-      }
+      },
+      showSnackbar: false,
+      error: 'nothing'
     }),
     methods: {
       doLogin() {
         console.log("doLogin");
         userApi.login(this.form.username, this.form.password).then(user => {
+          user.online = true;
           globals.setUser(user);
-          this.$router.push({name: 'home'})
+          this.$router.push({name: 'home'});
+        }).catch(error => {
+          this.error = error;
+          this.showSnackbar = true
         })
       }
     }
