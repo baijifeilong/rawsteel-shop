@@ -4,6 +4,7 @@ import Home from '@/components/Home.vue'
 import NotFound from '@/components/NotFound.vue'
 import Login from '@/components/Login.vue'
 import Foo from '@/components/Foo.vue'
+import Root from '@/components/Root.vue'
 
 Vue.use(Router);
 
@@ -26,8 +27,16 @@ export default new Router({
       redirect: '/404'
     }, {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'root',
+      component: Root,
+      redirect: '/index',
+      children: [
+        {
+          path: '/index',
+          name: 'home',
+          component: Home
+        }
+      ]
     }
   ]
 })
