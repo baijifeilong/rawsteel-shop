@@ -18,7 +18,7 @@ import javax.annotation.Resource
  */
 @RestController
 @RequestMapping("/api/admin/templates")
-class AdminTemplateController {
+class AdminTemplateController : BaseController() {
 
     @Resource
     private lateinit var templateService: TemplateService

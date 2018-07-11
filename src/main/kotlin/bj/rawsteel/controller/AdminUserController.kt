@@ -16,7 +16,7 @@ import javax.annotation.Resource
  */
 @RestController
 @RequestMapping("/api/admin/users")
-class AdminUserController {
+class AdminUserController : BaseController() {
 
     @Resource
     private lateinit var userService: UserService

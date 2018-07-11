@@ -16,12 +16,13 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter
 import org.springframework.security.web.authentication.AnonymousAuthenticationFilter
-import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.security.web.util.matcher.NegatedRequestMatcher
 import org.springframework.security.web.util.matcher.OrRequestMatcher
 import org.springframework.security.web.util.matcher.RequestMatcher
 import org.springframework.stereotype.Component
+import org.springframework.web.cors.CorsConfiguration
 import java.util.*
 import javax.annotation.Resource
 import javax.servlet.FilterChain
@@ -29,7 +30,6 @@ import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler
 
 /**
  * Created by BaiJiFeiLong@gmail.com at 2018/7/9 下午2:20
@@ -63,7 +63,7 @@ open class SecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity?) {
         val protectedUrls = NegatedRequestMatcher(OrRequestMatcher(PUBLIC_URLS.map { AntPathRequestMatcher(it) }))
         http?.sessionManagement()?.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                ?.and()?.exceptionHandling()?.authenticationEntryPoint { _, response, e ->
+                ?.and()?.exceptionHandling()?.authenticationEntryPoint { _, response, _ ->
                     response.status = 401
                     response.contentType = MediaType.APPLICATION_JSON_UTF8_VALUE
                     response.writer.write(objectMapper.writeValueAsString(ApiFailure.of(401, "Unauthorized: No token or invalid token")))
@@ -77,6 +77,7 @@ open class SecurityConfig : WebSecurityConfigurerAdapter() {
                 }, AnonymousAuthenticationFilter::class.java)
                 ?.authorizeRequests()?.antMatchers(*PUBLIC_URLS)?.permitAll()?.anyRequest()?.authenticated()
                 ?.and()?.csrf()?.disable()?.formLogin()?.disable()?.httpBasic()?.disable()?.logout()?.disable()
+                ?.cors()?.configurationSource { _ -> CorsConfiguration().applyPermitDefaultValues() }
     }
 }
 
