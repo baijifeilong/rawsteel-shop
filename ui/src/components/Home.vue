@@ -2,19 +2,22 @@
   <div>
     <h1>Home</h1>
     <span>
-    This is {{ user }}
+    This is {{ home }}
     </span>
   </div>
 </template>
 
 <script>
-  import * as globals from '../common/globals'
+  import homeApi from '../api/homeApi'
 
   export default {
     name: "Home",
     data: () => ({
-      user: globals.getUser()
-    })
+      home: 'nothing'
+    }),
+    mounted: function () {
+      homeApi.index().then(data => this.home = data)
+    }
   }
 </script>
 
