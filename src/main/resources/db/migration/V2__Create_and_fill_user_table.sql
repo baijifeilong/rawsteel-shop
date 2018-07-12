@@ -2,11 +2,9 @@ CREATE TABLE user (
   id       INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT    NOT NULL UNIQUE,
   password TEXT,
-  age      INTEGER NOT NULL    DEFAULT 0,
-  created_at DATETIME NOT NULL DEFAULT 0,
-  updated_at DATETIME NOT NULL DEFAULT 0
+  nickname TEXT,
+  avatar   TEXT,
+  age      INTEGER,
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NOT NULL
 );
-
-INSERT INTO user (username, password, age) VALUES ('ant', 'ANT', 11);
-INSERT INTO user (username, password, age) VALUES ('bee', 'BEE', 22);
-INSERT INTO user (username, password, age) VALUES ('cat', 'CAT', 33);

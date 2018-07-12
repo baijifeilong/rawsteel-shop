@@ -1,8 +1,11 @@
 package bj.rawsteel.domain
 
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import java.util.*
 import javax.persistence.*
 
 /**
@@ -46,6 +49,10 @@ class User : UserDetails {
         this.password = password
     }
 
+    override fun toString(): String {
+        return "User(id=$id, username=$username, password=$password, nickname=$nickname, avatar=$avatar, age=$age, createdAt=$createdAt, updatedAt=$updatedAt, token=$token)"
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
@@ -56,7 +63,23 @@ class User : UserDetails {
     @Column
     private var password: String? = null
 
+    @Column
+    var nickname: String? = null
+
+    @Column
+    var avatar: String? = null
+
+    @Column
+    var age: Int? = null
+
+    @Column
+    @CreationTimestamp
+    var createdAt: Date? = null
+
+    @Column
+    @UpdateTimestamp
+    var updatedAt: Date? = null
+
     @Transient
     var token: String? = null
-
 }

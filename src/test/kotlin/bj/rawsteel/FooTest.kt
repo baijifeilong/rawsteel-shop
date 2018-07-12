@@ -11,8 +11,10 @@ class FooTest {
 
     @Test
     fun testAlpha() {
-        println("here")
-        println(BizException(1, "nothing"))
-        println(ApiSuccess.of("hello"))
+        println(User(1))
     }
+}
+
+data class User(var id: Int) {
+    var username = ""
 }

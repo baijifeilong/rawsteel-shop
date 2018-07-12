@@ -2,6 +2,8 @@ package bj.rawsteel.service
 
 import bj.rawsteel.domain.QUser
 import bj.rawsteel.domain.User
+import bj.rawsteel.dto.UserInfoDTO
+import bj.rawsteel.dto.UserInfoWithTokenDTO
 import bj.rawsteel.exception.RegisterException
 import bj.rawsteel.repository.UserRepository
 import io.jsonwebtoken.Jwts
@@ -47,6 +49,10 @@ class UserService : BaseService() {
         return userRepository.findAll(predicate, pageable)
     }
 
+    fun findAll(): List<User> {
+        return userRepository.findAll()
+    }
+
     fun findByUsername(username: String): Optional<User> {
         return userRepository.findOne(QUser.user.username.eq(username))
     }
@@ -63,6 +69,8 @@ class UserService : BaseService() {
         val user = User().apply {
             this.username = username
             this.password = BCrypt.hashpw(password, BCrypt.gensalt())
+            this.createdAt = Date()
+            this.updatedAt = this.createdAt
         }
         return userRepository.save(user)
     }
@@ -72,6 +80,7 @@ class UserService : BaseService() {
         if (username != null) {
             user.username = username;
         }
+        user.updatedAt = Date()
         return userRepository.save(user)
 
     }
@@ -79,6 +88,10 @@ class UserService : BaseService() {
     fun destroy(id: Long) {
         findByIdOrThrow(id)
         userRepository.deleteById(id)
+    }
+
+    fun destroyAll() {
+        userRepository.deleteAll()
     }
 
     fun findByToken(token: String): Optional<User> {
@@ -109,5 +122,13 @@ class UserService : BaseService() {
     fun registerAndLogin(username: String, password: String): User {
         register(username, password)
         return login(username, password)
+    }
+
+    fun constructUserInfo(user: User): UserInfoDTO {
+        return UserInfoDTO(user)
+    }
+
+    fun constructUserInfoWithToken(user: User): UserInfoWithTokenDTO {
+        return UserInfoWithTokenDTO(user)
     }
 }

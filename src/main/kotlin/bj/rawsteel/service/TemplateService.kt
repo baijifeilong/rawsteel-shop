@@ -23,6 +23,10 @@ class TemplateService {
         return templateRepository.findAll(predicate, pageable)
     }
 
+    fun findAll(): List<Template> {
+        return templateRepository.findAll()
+    }
+
     fun findById(id: Long): Optional<Template> {
         return templateRepository.findById(id)
     }
@@ -51,5 +55,9 @@ class TemplateService {
     fun destroy(id: Long) {
         findByIdOrThrow(id)
         templateRepository.deleteById(id)
+    }
+
+    fun destroyAll() {
+        templateRepository.deleteAll()
     }
 }
