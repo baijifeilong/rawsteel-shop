@@ -6,6 +6,7 @@ class User {
   updatedAt: Date;
   token: string;
   online: boolean;
+  avatarUrl: string;
 
   static fromApi(item: object) {
     const user: User = new User();
@@ -15,6 +16,7 @@ class User {
     user.createdAt = new Date(item['createdAt']);
     user.updatedAt = new Date(item['updatedAt']);
     user.token = item['token'];
+    user.avatarUrl = item['avatarUrl'];
     return user;
   }
 }

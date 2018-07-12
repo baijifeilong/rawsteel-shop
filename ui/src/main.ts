@@ -7,6 +7,8 @@ import VeeValidate from 'vee-validate';
 import messages from './i18n/messages'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+import * as globals from './common/globals'
+import User from "./domain/User";
 
 Vue.config.productionTip = false;
 Vue.use(VueMaterial);
@@ -18,7 +20,17 @@ const i18n = new VueI18n({
   messages
 });
 
-new Vue({
+Vue.mixin({
+  data: function () {
+    return {
+      get currentUser(): User {
+        return globals.getUser()
+      }
+    }
+  }
+});
+
+window['vm'] = new Vue({
   el: '#app',
   router,
   template: '<App/>',
