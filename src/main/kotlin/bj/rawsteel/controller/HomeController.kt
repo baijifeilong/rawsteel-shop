@@ -18,10 +18,10 @@ class HomeController : BaseController() {
     fun index(): ApiSuccess<Any> {
         return ApiSuccess.of(listOf(
                 HomeEntry(HomeEntryType.BANNERS, listOf(
-                        mapOf("imageUrl" to "http://lorempixel.com/800/400/people/", "linkUrl" to "http://www.baidu.com"),
-                        mapOf("imageUrl" to "http://lorempixel.com/800/400/people/", "linkUrl" to "http://www.baidu.com"),
-                        mapOf("imageUrl" to "http://lorempixel.com/800/400/people/", "linkUrl" to "http://www.baidu.com"),
-                        mapOf("imageUrl" to "http://lorempixel.com/800/400/people/", "linkUrl" to "http://www.baidu.com")
+                        mapOf("imageUrl" to "${this.siteIndexUrl()}/lorem/image/1366/768/wallpaper?x=1", "linkUrl" to "http://www.baidu.com"),
+                        mapOf("imageUrl" to "${this.siteIndexUrl()}/lorem/image/1366/768/wallpaper?x=2", "linkUrl" to "http://www.baidu.com"),
+                        mapOf("imageUrl" to "${this.siteIndexUrl()}/lorem/image/1366/768/wallpaper?x=3", "linkUrl" to "http://www.baidu.com"),
+                        mapOf("imageUrl" to "${this.siteIndexUrl()}/lorem/image/1366/768/wallpaper?x=4", "linkUrl" to "http://www.baidu.com")
                 )),
                 HomeEntry(HomeEntryType.HTML, mapOf("contentUrl" to "${siteIndexUrl()}/lorem/html/-1/400/Lorem")),
                 HomeEntry(HomeEntryType.HTML, mapOf("contentUrl" to "${siteIndexUrl()}/lorem/html/-1/400/Ipsum")),

@@ -9,11 +9,14 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import * as globals from './common/globals'
 import User from "./domain/User";
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false;
 Vue.use(VueMaterial);
 Vue.use(VueI18n);
 Vue.use(VeeValidate);
+Vue.use(ElementUI);
 
 const i18n = new VueI18n({
   locale: 'zh',
