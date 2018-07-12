@@ -32,7 +32,7 @@ class Api {
     return this.agent.request({
       method: method,
       url: url,
-      params: params,
+      data: params,
       headers: {
         Authorization: globals.getToken()
       }
