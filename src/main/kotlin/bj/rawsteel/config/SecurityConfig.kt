@@ -49,6 +49,7 @@ open class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     private val objectMapper = ObjectMapper().writerWithDefaultPrettyPrinter()
 
+    // TODO process exceptions on public urls
     override fun configure(web: WebSecurity?) {
         web?.ignoring()?.antMatchers(
                 "/v2/api-docs",

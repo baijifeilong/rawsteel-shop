@@ -9,10 +9,16 @@ import bj.rawsteel.domain.User
 open class UserInfoDTO(user: User) {
     var id: Long? = null
     var username: String? = null
+    var nickname: String? = null
+    var age: Int? = null
+    var avatarUrl: String? = null
 
     init {
         this.id = user.id
         this.username = user.username
+        this.nickname = user.nickname
+        this.age = user.age
+        this.avatarUrl = user.avatar
     }
 }
 

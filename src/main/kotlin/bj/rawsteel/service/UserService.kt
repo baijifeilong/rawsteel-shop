@@ -75,14 +75,24 @@ class UserService : BaseService() {
         return userRepository.save(user)
     }
 
-    fun update(id: Long, username: String?): User {
-        val user = findByIdOrThrow(id)
-        if (username != null) {
-            user.username = username;
+    fun update(
+            id: Long,
+            username: String? = null,
+            password: String? = null,
+            nickname: String? = null,
+            age: Int? = null,
+            avatar: String? = null
+
+    ): User {
+        val user = findByIdOrThrow(id).apply {
+            if (username != null) this.username = username
+            if (password != null) this.password = BCrypt.hashpw(password, BCrypt.gensalt())
+            if (nickname != null) this.nickname = nickname
+            if (age != null) this.age = age
+            if (avatar != null) this.avatar = avatar
         }
         user.updatedAt = Date()
         return userRepository.save(user)
-
     }
 
     fun destroy(id: Long) {

@@ -18,7 +18,6 @@ class ApiControllerAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     fun processException(e: Exception) = ApiFailure.of(500, e.localizedMessage)
 
-
     @ExceptionHandler(NoHandlerFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     fun processNotFoundException(e: Exception) = ApiFailure.of(404, e.localizedMessage)

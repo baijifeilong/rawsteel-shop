@@ -1,7 +1,7 @@
 package bj.rawsteel.seeder
 
+import bj.rawsteel.BaseContext
 import bj.rawsteel.service.UserService
-import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import javax.annotation.Resource
 
@@ -9,12 +9,10 @@ import javax.annotation.Resource
  * Created by BaiJiFeiLong@gmail.com at 2018/7/12 上午10:41
  */
 @Component
-class UserSeeder {
+class UserSeeder : BaseContext() {
 
     @Resource
     private lateinit var userService: UserService
-
-    private val logger = LoggerFactory.getLogger(this::class.java)
 
     fun clear() {
         logger.info("Clear users ...")
@@ -23,8 +21,14 @@ class UserSeeder {
 
     fun seed() {
         logger.info("Seed users ...")
-        for (username in arrayOf("foo", "bar", "baz")) {
-            userService.create(username, username)
+        for (username in arrayOf("apple", "banana", "cherry")) {
+            val user = userService.create(username, username)
+            userService.update(
+                    user.id!!,
+                    nickname = username.toUpperCase(),
+                    age = 18,
+                    avatar = this.siteIndexUrl() + "/lorem/image/256/256/$username"
+            )
         }
     }
 

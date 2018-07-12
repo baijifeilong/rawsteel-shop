@@ -1,7 +1,5 @@
 package bj.rawsteel
 
-import bj.rawsteel.domain.ApiSuccess
-import bj.rawsteel.exception.BizException
 import org.junit.Test
 
 /**
@@ -11,10 +9,6 @@ class FooTest {
 
     @Test
     fun testAlpha() {
-        println(User(1))
+        println("foo")
     }
-}
-
-data class User(var id: Int) {
-    var username = ""
 }

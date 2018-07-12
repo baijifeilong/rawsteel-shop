@@ -1,0 +1,26 @@
+### Index
+GET http://localhost:8080/api/admin/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcHBsZSJ9.HyUzvHSCvGeTU0Pi8yr-PdTzWH96ngnA85b1sfRiLm4
+Accept: application/json
+
+### Create
+POST http://localhost:8080/api/admin/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcHBsZSJ9.HyUzvHSCvGeTU0Pi8yr-PdTzWH96ngnA85b1sfRiLm4
+Content-Type: application/x-www-form-urlencoded
+
+### Get
+GET http://localhost:8080/api/admin/users/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcHBsZSJ9.HyUzvHSCvGeTU0Pi8yr-PdTzWH96ngnA85b1sfRiLm4
+Accept: application/json
+
+### Patch
+PATCH http://localhost:8080/api/admin/users/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcHBsZSJ9.HyUzvHSCvGeTU0Pi8yr-PdTzWH96ngnA85b1sfRiLm4
+Content-Type: application/x-www-form-urlencoded
+
+### Delete
+DELETE http://localhost:8080/api/admin/users/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcHBsZSJ9.HyUzvHSCvGeTU0Pi8yr-PdTzWH96ngnA85b1sfRiLm4
+Content-Type: application/x-www-form-urlencoded
+
+###
