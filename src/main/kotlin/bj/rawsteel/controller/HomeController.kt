@@ -25,7 +25,6 @@ class HomeController : BaseController() {
                     mapOf("imageUrl" to "${siteIndexUrl()}/lorem/image/1680/1050/$it", "linkUrl" to "http://www.baidu.com")
                 }),
                 HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Lorem")),
-                HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Ipsum")),
                 HomeEntry(HomeEntryType.GOODS, mapOf(
                         "title" to "Foods",
                         "goodsItems" to arrayOf("apple", "banana", "orange", "grape", "pineapple", "watermelon").map {
@@ -33,6 +32,7 @@ class HomeController : BaseController() {
                         },
                         "moreGoodsUrl" to "http://www.baidu.com"
                 )),
+                HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Ipsum")),
                 HomeEntry(HomeEntryType.GOODS, mapOf(
                         "title" to "Animals",
                         "goodsItems" to arrayOf("ant", "bee", "cat", "dog", "fox", "goat").map {
@@ -43,7 +43,7 @@ class HomeController : BaseController() {
                 HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Dolor")),
                 HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Sit")),
                 HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Amet"))
-                ))
+        ))
     }
 
     data class HomeEntry(
