@@ -40,7 +40,8 @@ open class SecurityConfig : WebSecurityConfigurerAdapter() {
         val PUBLIC_URLS = arrayOf(
                 "/",
                 "/api/users/login",
-                "/api/users/register"
+                "/api/users/register",
+                "/lorem/**"
         )
     }
 
@@ -56,8 +57,7 @@ open class SecurityConfig : WebSecurityConfigurerAdapter() {
                 "/configuration/**",
                 "/swagger-resources/**",
                 "/swagger-ui.html",
-                "/webjars/**",
-                "/lorem/**"
+                "/webjars/**"
         )
     }
 
