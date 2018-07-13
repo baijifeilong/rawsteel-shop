@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import springfox.documentation.swagger2.annotations.EnableSwagger2
+import javax.annotation.Resource
 
 /**
  * Created by BaiJiFeiLong@gmail.com at 2018/7/9 下午6:31
@@ -14,45 +15,35 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 @EnableSwagger2
 class HomeController : BaseController() {
 
+    @Resource
+    private lateinit var loremController: LoremController
+
     @GetMapping("home")
     fun index(): ApiSuccess<Any> {
         return ApiSuccess.of(listOf(
-                HomeEntry(HomeEntryType.BANNERS, listOf(
-                        mapOf("imageUrl" to "${this.siteIndexUrl()}/lorem/image/1366/768/wallpaper?x=1", "linkUrl" to "http://www.baidu.com"),
-                        mapOf("imageUrl" to "${this.siteIndexUrl()}/lorem/image/1366/768/wallpaper?x=2", "linkUrl" to "http://www.baidu.com"),
-                        mapOf("imageUrl" to "${this.siteIndexUrl()}/lorem/image/1366/768/wallpaper?x=3", "linkUrl" to "http://www.baidu.com"),
-                        mapOf("imageUrl" to "${this.siteIndexUrl()}/lorem/image/1366/768/wallpaper?x=4", "linkUrl" to "http://www.baidu.com")
-                )),
-                HomeEntry(HomeEntryType.HTML, mapOf("contentUrl" to "${siteIndexUrl()}/lorem/html/-1/400/Lorem")),
-                HomeEntry(HomeEntryType.HTML, mapOf("contentUrl" to "${siteIndexUrl()}/lorem/html/-1/400/Ipsum")),
+                HomeEntry(HomeEntryType.BANNERS, arrayOf("nike", "adidas", "anta", "361").map {
+                    mapOf("imageUrl" to "${siteIndexUrl()}/lorem/image/1680/1050/$it", "linkUrl" to "http://www.baidu.com")
+                }),
+                HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Lorem")),
+                HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Ipsum")),
                 HomeEntry(HomeEntryType.GOODS, mapOf(
                         "title" to "Foods",
-                        "goodsItems" to listOf(
-                                mapOf("title" to "Apple", "imageUrl" to "http://lorempixel.com/500/500/food/"),
-                                mapOf("title" to "Banana", "imageUrl" to "http://lorempixel.com/500/500/food/"),
-                                mapOf("title" to "Orange", "imageUrl" to "http://lorempixel.com/500/500/food/"),
-                                mapOf("title" to "Grape", "imageUrl" to "http://lorempixel.com/500/500/food/"),
-                                mapOf("title" to "Pineapple", "imageUrl" to "http://lorempixel.com/500/500/food/"),
-                                mapOf("title" to "Watermelon", "imageUrl" to "http://lorempixel.com/500/500/food/")
-                        ),
+                        "goodsItems" to arrayOf("apple", "banana", "orange", "grape", "pineapple", "watermelon").map {
+                            mapOf("title" to it.capitalize(), "imageUrl" to "${siteIndexUrl()}/lorem/image/500/500/$it")
+                        },
                         "moreGoodsUrl" to "http://www.baidu.com"
                 )),
                 HomeEntry(HomeEntryType.GOODS, mapOf(
                         "title" to "Animals",
-                        "goodsItems" to listOf(
-                                mapOf("title" to "Ant", "imageUrl" to "http://lorempixel.com/500/500/animals/"),
-                                mapOf("title" to "Bee", "imageUrl" to "http://lorempixel.com/500/500/animals/"),
-                                mapOf("title" to "Cat", "imageUrl" to "http://lorempixel.com/500/500/animals/"),
-                                mapOf("title" to "Dog", "imageUrl" to "http://lorempixel.com/500/500/animals/"),
-                                mapOf("title" to "Fox", "imageUrl" to "http://lorempixel.com/500/500/animals/"),
-                                mapOf("title" to "Goat", "imageUrl" to "http://lorempixel.com/500/500/animals/")
-                        ),
+                        "goodsItems" to arrayOf("ant", "bee", "cat", "dog", "fox", "goat").map {
+                            mapOf("title" to it.capitalize(), "imageUrl" to "${siteIndexUrl()}/lorem/image/500/500/$it")
+                        },
                         "moreGoodsUrl" to "http://www.baidu.com"
                 )),
-                HomeEntry(HomeEntryType.HTML, mapOf("htmlCodeUrl" to "${siteIndexUrl()}/lorem/html/-1/400/Dolor")),
-                HomeEntry(HomeEntryType.HTML, mapOf("htmlCodeUrl" to "${siteIndexUrl()}/lorem/html/-1/400/Sit")),
-                HomeEntry(HomeEntryType.HTML, mapOf("htmlCodeUrl" to "${siteIndexUrl()}/lorem/html/-1/400/Amet"))
-        ))
+                HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Dolor")),
+                HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Sit")),
+                HomeEntry(HomeEntryType.HTML, loremController.html(-1, 400, "Amet"))
+                ))
     }
 
     data class HomeEntry(
