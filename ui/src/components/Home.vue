@@ -8,7 +8,7 @@
       </el-carousel>
       <div v-else-if="section['type'] === 'HTML'" v-html="section['content']"></div>
       <div v-else-if="section['type'] === 'GOODS'">
-        <h1>{{ section['content']['title'] }}</h1>
+        <h1 style="padding-left: 16px">{{ section['content']['title'] }}</h1>
         <div style="display: flex; flex-wrap: wrap;">
           <el-card v-for="item in section['content']['goodsItems']" style="width: 50%;">
             <img :src="item['imageUrl']">
