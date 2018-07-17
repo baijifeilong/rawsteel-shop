@@ -10,8 +10,8 @@ CREATE TABLE activity (
 
 CREATE TABLE activity_rule (
   id                INTEGER PRIMARY KEY AUTOINCREMENT,
-  special_price     REAL,
-  money_off         READ,
+  special_price     INTEGER,
+  money_off         INTEGER,
   money_off_percent INTEGER,
   created_at        DATETIME NOT NULL,
   updated_at        DATETIME NOT NULL
