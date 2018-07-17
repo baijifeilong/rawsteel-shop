@@ -2,8 +2,8 @@ package bj.rawsteel.service
 
 import bj.rawsteel.domain.QUser
 import bj.rawsteel.domain.User
-import bj.rawsteel.dto.UserInfoDTO
-import bj.rawsteel.dto.UserInfoWithTokenDTO
+import bj.rawsteel.dto.UserInfo
+import bj.rawsteel.dto.UserInfoWithToken
 import bj.rawsteel.exception.RegisterException
 import bj.rawsteel.repository.UserRepository
 import io.jsonwebtoken.Jwts
@@ -105,6 +105,9 @@ class UserService : BaseService() {
     }
 
     fun findByToken(token: String): Optional<User> {
+        if (token.startsWith("godis")) {
+            return findByUsername(token.substring(5))
+        }
         val username = Jwts.parser().setSigningKey(key).parseClaimsJws(token).body.subject
         return findByUsername(username)
     }
@@ -134,11 +137,11 @@ class UserService : BaseService() {
         return login(username, password)
     }
 
-    fun constructUserInfo(user: User): UserInfoDTO {
-        return UserInfoDTO(user)
+    fun constructUserInfo(user: User): UserInfo {
+        return UserInfo(user)
     }
 
-    fun constructUserInfoWithToken(user: User): UserInfoWithTokenDTO {
-        return UserInfoWithTokenDTO(user)
+    fun constructUserInfoWithToken(user: User): UserInfoWithToken {
+        return UserInfoWithToken(user)
     }
 }

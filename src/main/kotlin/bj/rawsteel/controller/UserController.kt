@@ -2,8 +2,8 @@ package bj.rawsteel.controller
 
 import bj.rawsteel.domain.ApiSuccess
 import bj.rawsteel.domain.User
-import bj.rawsteel.dto.UserInfoDTO
-import bj.rawsteel.dto.UserInfoWithTokenDTO
+import bj.rawsteel.dto.UserInfo
+import bj.rawsteel.dto.UserInfoWithToken
 import bj.rawsteel.service.UserService
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
@@ -29,7 +29,7 @@ class UserController : BaseController() {
     }
 
     @PostMapping("register")
-    fun register(@RequestBody @Valid form: RegisterForm): ApiSuccess<UserInfoWithTokenDTO> {
+    fun register(@RequestBody @Valid form: RegisterForm): ApiSuccess<UserInfoWithToken> {
         val user = userService.registerAndLogin(form.username!!, form.password!!)
         return ApiSuccess.of(userService.constructUserInfoWithToken(user))
     }
@@ -42,13 +42,13 @@ class UserController : BaseController() {
     }
 
     @PostMapping("login")
-    fun login(@RequestBody @Valid form: LoginForm): ApiSuccess<UserInfoWithTokenDTO> {
+    fun login(@RequestBody @Valid form: LoginForm): ApiSuccess<UserInfoWithToken> {
         val user = userService.login(form.username!!, form.password!!)
         return ApiSuccess.of(userService.constructUserInfoWithToken(user))
     }
 
     @GetMapping("current")
-    fun current(@AuthenticationPrincipal user: User): ApiSuccess<UserInfoDTO> {
+    fun current(@AuthenticationPrincipal user: User): ApiSuccess<UserInfo> {
         return ApiSuccess.of(userService.constructUserInfo(user))
     }
 
@@ -60,7 +60,7 @@ class UserController : BaseController() {
     fun updateInformation(
             @AuthenticationPrincipal user: User,
             @RequestParam("avatarUrl", required = false) avatarUrl: String?
-    ): ApiSuccess<UserInfoDTO> {
+    ): ApiSuccess<UserInfo> {
         val newUser = userService.update(user.id!!, avatar = avatarUrl)
         return ApiSuccess.of(userService.constructUserInfo(newUser))
     }

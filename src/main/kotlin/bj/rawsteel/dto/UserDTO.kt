@@ -6,7 +6,7 @@ import bj.rawsteel.domain.User
  * Created by BaiJiFeiLong@gmail.com at 2018/7/12 上午9:38
  */
 
-open class UserInfoDTO(user: User) {
+open class UserInfo(user: User) {
     var id: Long? = null
     var username: String? = null
     var nickname: String? = null
@@ -22,7 +22,7 @@ open class UserInfoDTO(user: User) {
     }
 }
 
-open class UserInfoWithTokenDTO(user: User) : UserInfoDTO(user) {
+open class UserInfoWithToken(user: User) : UserInfo(user) {
     var token: String? = null
 
     init {
